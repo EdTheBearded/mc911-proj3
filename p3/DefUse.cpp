@@ -14,26 +14,34 @@ namespace {
     DefUse() : FunctionPass(ID) {}
 
     virtual bool runOnFunction(Function &F) {
-	errs() << F.getName() << "\n";
+	//errs() << F.getName() << "\n";
 	inst_iterator I, E, aux;
 	for (I = inst_begin(F), E = inst_end(F); I != E; ++I){
+		// checa se a instrucao e uma atribuicao (definicao)
 		if(!(I->getName().empty())){
+			// checa se a intrucao esta viva
 			if(I->hasNUses(0) && !(I->mayHaveSideEffects()) && !(I->isTerminator()) && !(isa<DbgInfoIntrinsic>(*I)) && !(isa<LandingPadInst>(*I))){
 			//if(I->hasNUses(0)){
-			errs() << I->getName() << " is used " << I->getNumUses() << " time(s)\n";
-			/*for (Use &U : pi->operands()) {
-  				Value *v = U.get();
-   			}*/
-			/*for (User *U : I->users()) {
-				if (Instruction *Inst = dyn_cast<Instruction>(U)) {
-					errs() << *Inst << "\n";
-				}
-			}*/
-			//aux = I;
-			//I++;
-			//aux->eraseFromParent();
-			errs() << "###########################################\n";
-		}
+				errs() << I->getName() << " is used " << I->getNumUses() << " time(s)\n";
+				// itera nos operadores da instrucao
+				for (Use &U : I->operands()) {
+  					Value *v = U.get();
+					// checa se o operador e uma variavel
+					if(isa<Instruction>(*v)){
+						errs() << *v << " is used ";
+						errs() << v->getNumUses() << " times\n";
+						for (User *us : v->users()) {
+  							if (Instruction *Inst = dyn_cast<Instruction>(us)){
+								errs() << *Inst << "\n";
+							}
+						}
+					}
+   				}
+				aux = I;
+				++I;
+				aux->eraseFromParent();
+				//errs() << "###########################################\n";
+			}
 		}
 	}
       	// W: uma lista de variaveis da função
