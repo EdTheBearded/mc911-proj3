@@ -1,4 +1,5 @@
 #include "llvm/Pass.h"
+#include "llvm/IR/Value.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Instruction.h"
 #include "llvm/IR/Instructions.h"
@@ -16,6 +17,7 @@ namespace {
     virtual bool runOnFunction(Function &F) {
 	//errs() << F.getName() << "\n";
 	inst_iterator I, E, aux;
+	//user_iterator i, e;
 	for (I = inst_begin(F), E = inst_end(F); I != E; ++I){
 		// checa se a instrucao e uma atribuicao (definicao)
 		if(!(I->getName().empty())){
@@ -27,15 +29,22 @@ namespace {
 				for (Use &U : I->operands()) {
   					Value *v = U.get();
 					// checa se o operador e uma variavel
-					if(isa<Instruction>(*v)){
-						errs() << *v << " is used ";
+					//if(isa<Instruction>(*v)){
+						errs() << "Operando " << *v << " is used ";
 						errs() << v->getNumUses() << " times\n";
-						for (User *us : v->users()) {
+						// itera sobre os usos dessa variavel
+						for(Value::use_iterator i = v->use_begin(), e = v->use_end(); i != e; ++i){
+								errs() << **i << "\n";
+  							//if (Instruction *Inst = dyn_cast<Instruction>(*i)){
+								//errs() << i->getType() << "\n";
+							//}
+						}
+						/*for (User *us : v->users()) {
   							if (Instruction *Inst = dyn_cast<Instruction>(us)){
 								errs() << *Inst << "\n";
-							}
-						}
-					}
+							} else { errs() << "nao e instrucao\n"; }
+						}*/
+					//}
    				}
 				aux = I;
 				++I;
