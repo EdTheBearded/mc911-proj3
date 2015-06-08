@@ -94,4 +94,4 @@ namespace {
 }
 
 char DefUse::ID = 0;
-static RegisterPass<DefUse> X("def-use", "Def-use chain Pass", false, false);
+static RegisterPass<DefUse> X("dce-ssa", "Def-use chain Pass", false, false);
