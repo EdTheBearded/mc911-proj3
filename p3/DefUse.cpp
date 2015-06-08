@@ -1,4 +1,4 @@
-#include <unordered_set>
+#include <set>
 #include "llvm/Pass.h"
 #include "llvm/IR/Value.h"
 #include "llvm/IR/Function.h"
@@ -11,7 +11,8 @@
 using namespace llvm;
 using namespace std;
 
-size_t hash (Instruction i) { return &i; }
+//template <class T>
+//T hash (T inst) { return &inst; }
 
 namespace {
   struct DefUse : public FunctionPass {
@@ -21,35 +22,36 @@ namespace {
     virtual bool runOnFunction(Function &F) {
 
 	bool ret = false;
-	unordered_set<Key=Instruction, Hash=hash()> W;
-	//inst_iterator I, E, aux;
-  	//Value *v;
+	set<Instruction*> W;
 
 	// itera nas instruções da função
 	for (inst_iterator I = inst_begin(F), E = inst_end(F); I != E; ++I){
 		// checa se a instrucao e uma atribuicao (definicao)
 		if(!(I->getName().empty())){
 			// armazena a instrucao no conjunto W
-			W.insert(*I);
+			W.insert(&*I);
+			errs() << "Armazenando a definicao " << (*I) << "\n";
 		}
 	}
 
+	errs() << "Terminamos de armazenar as definicoes.\n ";
+
 	while(!W.empty()){
-		iterator i = W.begin();
-		Instruction inst = *i;
+		set<Instruction*>::iterator inst = W.begin();
+		//errs() << "Analisando a instrucao " << (**inst) << "\n";
 		// checa se a intrucao esta viva
-		if(inst.hasNUses(0) && !(inst.mayHaveSideEffects()) && !(inst.isTerminator()) 
-			&& !(isa<DbgInfoIntrinsic>(inst)) && !(isa<LandingPadInst>(inst))){
+		if((*inst)->hasNUses(0) && !((*inst)->mayHaveSideEffects()) && !((*inst)->isTerminator()) 
+			&& !(isa<DbgInfoIntrinsic>(**inst)) && !(isa<LandingPadInst>(**inst))){
 		//if(I->hasNUses(0)){
-			//errs() << "Definicao " << I->getName() << " is used " << I->getNumUses() << " time(s)\n";
+			errs() << "Definicao " << (*inst)->getName() << " is used " << (*inst)->getNumUses() << " time(s)\n";
 			// itera nos operadores da instrucao
-			for (Use &U : inst.operands()) {
+			for (Use &U : (*inst)->operands()) {
   				Value *v = U.get();
 				// checa se o operador e uma variavel
 				if(isa<Instruction>(*v)){
 					//errs() << "Operando " << *v << " is used ";
 					//errs() << v->getNumUses() << " times\n";
-					W.insert(*v);
+					W.insert(cast<Instruction>(v));
 						// itera sobre os usos dessa variavel
 						/*for(Value::use_iterator i = v->use_begin(), e = v->use_end(); i != e; ++i){
 								errs() << i->get() << "\n";
@@ -67,14 +69,14 @@ namespace {
 			}
 				//inst_iterator aux = I;
 				//++I;
-				W.erase(inst);	
-				inst.eraseFromParent();
+				(*inst)->eraseFromParent();
 				ret = true;
 				//errs() << "--------------------------------------------\n";
 				//errs() << "Operando " << *v << " is used ";
 				//errs() << v->getNumUses() << " times\n";
 				//errs() << "###########################################\n";
 		}
+		W.erase(inst);	
 	}
 		
       	// W: uma lista de variaveis da função
