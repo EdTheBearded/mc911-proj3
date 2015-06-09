@@ -15,6 +15,9 @@
 #include "llvm/Analysis/CFG.h"
 #include "llvm/ADT/BitVector.h"
 #include "llvm/IR/ValueMap.h"
+#include "llvm/IR/IntrinsicInst.h"
+
+#include "Liveness.h"
 
 #define DEBUG
 
@@ -22,14 +25,7 @@ using namespace llvm;
 
 namespace llvm {
 
-struct LivenessInfo {
-    std::set<const Value *> use;
-    std::set<const Value *> def;
-    std::set<const Value *> in;
-    std::set<const Value *> out;
-};
-
-class Liveness: public FunctionPass {
+class DCE: public FunctionPass {
 private:
 	
     DenseMap<const Instruction*, LivenessInfo> iLivenessMap;
@@ -39,7 +35,7 @@ private:
 
 public:
 	static char ID; 
-	Liveness() : FunctionPass(ID) {}
+	DCE() : FunctionPass(ID) {}
 
 	virtual bool runOnFunction(Function &F);
     void computeBBDefUse(Function &F);
@@ -51,7 +47,7 @@ public:
     void addToMap(Function &F);
 
 	virtual void getAnalysisUsage(AnalysisUsage &AU) const{
-		AU.setPreservesAll();
+		AU.addRequired<Liveness>();
 	}
 
 
