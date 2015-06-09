@@ -8,11 +8,10 @@
 #include "llvm/IR/IntrinsicInst.h"
 #include "llvm/Support/raw_ostream.h"
 
+#define DEBUG
+
 using namespace llvm;
 using namespace std;
-
-//template <class T>
-//T hash (T inst) { return &inst; }
 
 namespace {
   struct DefUse : public FunctionPass {
@@ -30,67 +29,52 @@ namespace {
 		if(!(I->getName().empty())){
 			// armazena a instrucao no conjunto W
 			W.insert(&*I);
-			errs() << "Armazenando a definicao " << (*I) << "\n";
+			#ifdef DEBUG
+				errs() << "Armazenando a definicao " << (*I) << "\n";
+			#endif
 		}
 	}
 
-	errs() << "Terminamos de armazenar as definicoes.\n ";
+	#ifdef DEBUG
+		errs() << "Terminamos de armazenar as definicoes.\n ";
+	#endif
 
 	while(!W.empty()){
+
+		// pega uma instrucao de W para analisar
 		set<Instruction*>::iterator inst = W.begin();
-		//errs() << "Analisando a instrucao " << (**inst) << "\n";
+		#ifdef DEBUG		
+			errs() << "Analisando a instrucao " << (**inst) << "\n";
+		#endif
+
 		// checa se a intrucao esta viva
 		if((*inst)->hasNUses(0) && !((*inst)->mayHaveSideEffects()) && !((*inst)->isTerminator()) 
 			&& !(isa<DbgInfoIntrinsic>(**inst)) && !(isa<LandingPadInst>(**inst))){
-		//if(I->hasNUses(0)){
-			errs() << "Definicao " << (*inst)->getName() << " is used " << (*inst)->getNumUses() << " time(s)\n";
+			#ifdef DEBUG
+				errs() << "Definicao " << (*inst)->getName() << " e usada " << (*inst)->getNumUses() << " vez(es).\n";
+			#endif
 			// itera nos operadores da instrucao
 			for (Use &U : (*inst)->operands()) {
   				Value *v = U.get();
 				// checa se o operador e uma variavel
 				if(isa<Instruction>(*v)){
-					//errs() << "Operando " << *v << " is used ";
-					//errs() << v->getNumUses() << " times\n";
+					// tenta inserir a definicao da variavel (operador) no conjunto
 					W.insert(cast<Instruction>(v));
-						// itera sobre os usos dessa variavel
-						/*for(Value::use_iterator i = v->use_begin(), e = v->use_end(); i != e; ++i){
-								errs() << i->get() << "\n";
-  							//if (Instruction *Inst = dyn_cast<Instruction>(*i)){
-								//errs() << i->getType() << "\n";
-							//}
-						}*/
-						/*for (User *us : v->users()) {
-  							if (Instruction *Inst = dyn_cast<Instruction>(us)){
-								errs() << *Inst << "\n";
-							} else { errs() << "nao e instrucao\n"; }
-						}*/
-					//}
-   				}
+					#ifdef DEBUG
+						errs() << "Operando " << *v << " e usado " << v->getNumUses() << " vez(es).\n";
+					#endif
+				}
 			}
-				//inst_iterator aux = I;
-				//++I;
+				// apaga instrucao do codigo
 				(*inst)->eraseFromParent();
+				// seta o retorno para true (codigo foi alterado)
 				ret = true;
-				//errs() << "--------------------------------------------\n";
-				//errs() << "Operando " << *v << " is used ";
-				//errs() << v->getNumUses() << " times\n";
-				//errs() << "###########################################\n";
 		}
+		// apaga instrucao do conjunto
 		W.erase(inst);	
 	}
 		
-      	// W: uma lista de variaveis da função
-	// enquanto W não esta vazio
-		// remove uma variavel v de W
-		// se a lista de usos de v é vazia -> Value::hasNUses(), Value::getNumUses()
-			// seja s o statement onde v é declarada
-			// se s não tem efeitos colaterais ->
-				// delete s da função
-				// para cada variavel u usada por s
-					// delete s da lista de usos de u
-					// insira u em W  
-	
-      return ret;
+      	return ret;
     }
   };
 }
