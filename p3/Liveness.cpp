@@ -124,15 +124,14 @@ void Liveness::computeBBInOut(Function &F) {
     std::set<const Value *> outp;
 	std::set<const Value *> temp1, temp2;
 	Function::iterator i, e;
+	std::set<const Value *>::iterator ii, ie;
 	bool cont = false;
 	
 	inp.clear();
 	outp.clear();
 	do{
-		i = F.begin();
-		e = F.end();
 		cont = false;
-		for(; i != e; i++){
+		for(i = F.begin(), e = F.end(); i != e; i++){
 			LivenessInfo &liv = bbLivenessMap[&*i];
 			
 			inp = liv.in;
@@ -143,24 +142,26 @@ void Liveness::computeBBInOut(Function &F) {
 									 std::inserter(temp1, temp1.end()));
 			std::set_union(liv.use.begin(), liv.use.end(), temp1.begin(), temp1.end(),
 									 std::inserter(liv.in, liv.in.end()));
+				
 			temp1.clear();
-			temp2.clear();
 			for(succ_iterator si = succ_begin(&*i), se = succ_end(&*i); si != se; si++){
+errs() << "succ\n"; 
 //				BasicBlock *succ = *si;
 				LivenessInfo &iliv = bbLivenessMap[*si];
-				std::set_union(iliv.in.begin(), iliv.in.end(), temp1.begin(), temp1.end(),
-							   std::inserter(temp2, temp2.end()));
-				temp1 = temp2;
+				std::set_union(liv.out.begin(), liv.out.end(), iliv.in.begin(), iliv.in.end(),
+							   std::inserter(temp1, temp1.end()));
+				liv.out = temp1;
+				errs() << "#######################\n" << "out\n";
+				for(ii = liv.out.begin(), ie = liv.out.end(); ii != ie; ii++){
+					errs() << (*ii)->getName() << "\n";	
+				}
 			}
-			liv.out = temp1;
 			if(inp != liv.in || outp != liv.out){
+				errs() << "true\n";
 				cont = true;
 			}
-
-		}	
+		}
 	} while(cont);
-
-
 }
 
 void Liveness::computeIInOut(Function &F){
@@ -178,12 +179,9 @@ void Liveness::computeIInOut(Function &F){
 	for(fi = F.begin(), fe = F.end(); fi != fe; fi++){
 		LivenessInfo &linfo = iLivenessMap[&*(fi->rbegin())];
 		linfo.out = bbLivenessMap[&*fi].out;
-		errs() << "#######################\n" << "out\n";
-		for(ii = linfo.out.begin(), ie = linfo.out.end(); ii != ie; ii++){
-			errs() << (*ii)->getName() << "\n";	
-		}
-		cont = false;
+		
 		do{
+			cont = false;
 			for(bi = fi->rbegin(), be = fi->rend(); bi != be; bi++){
 				/*liv = &iLivenessMap[&*bi];
 				if(bi == fi->rbegin()){
@@ -200,12 +198,6 @@ void Liveness::computeIInOut(Function &F){
 				std::set_union(liv.use.begin(), liv.use.end(), temp1.begin(), temp1.end(),
 										 std::inserter(liv.in, liv.in.end()));
 				temp1.clear();
-				errs() << "#######################\n" << "in\n";
-				for(ii = liv.in.begin(), ie = liv.in.end(); ii != ie; ii++){
-					errs() << (*ii)->getName() << "\n";	
-				}
-				
-
 			
 				LivenessInfo &iliv = iLivenessMap[&*prev(bi)];
 				/*
@@ -217,16 +209,12 @@ void Liveness::computeIInOut(Function &F){
 				*/
 				if(bi != fi->rbegin())
 					liv.out = iliv.in;
-				errs() << "#######################\n" << "out\n";
-				for(ii = liv.out.begin(), ie = liv.out.end(); ii != ie; ii++){
-					errs() << (*ii)->getName() << "\n";	
-				}
-				if(inp != liv.in || outp != liv.out)
+				if(inp != liv.in || outp != liv.out){
 					cont = true;
-				std::cin.get();
+				}
 			}
 		} while (cont);
-	}	
+	}
 }
 
 
@@ -237,7 +225,7 @@ bool Liveness::runOnFunction(Function &F) {
     computeIInOut(F);
 	#ifdef DEBUG
 	//checki(F);
-	//checkbb(F);
+	checkbb(F);
 	#endif
 	return false;
 }
