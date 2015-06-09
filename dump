@@ -1,582 +1,540 @@
-Func: main
-entry0
-  IN []
-    %tmp0 = alloca i32
-  OUT [tmp0, ]
-  IN [tmp0, ]
-    store i32 0, i32* %tmp0
-  OUT [tmp0, ]
-  IN [tmp0, ]
-    %tmp2 = call i8* @malloc(i32 44)
-  OUT [tmp0, tmp2, ]
-  IN [tmp0, tmp2, ]
-    %tmp1 = bitcast i8* %tmp2 to %class.LS*
-  OUT [tmp0, tmp1, ]
-  IN [tmp0, tmp1, ]
-    call void @"$__LS_LS"(%class.LS* %tmp1)
-  OUT [tmp0, tmp1, ]
-  IN [tmp0, tmp1, ]
-    %tmp3 = bitcast %class.LS* %tmp1 to %class.LS*
-  OUT [tmp0, tmp3, ]
-  IN [tmp0, tmp3, ]
-    %tmp4 = call i32 @__Start_LS(%class.LS* %tmp3, i32 10)
-  OUT [tmp0, tmp4, ]
-  IN [tmp0, tmp4, ]
-    %tmp5 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-  OUT [tmp0, tmp4, ]
-  IN [tmp0, tmp4, ]
-    %tmp6 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp4)
-  OUT [tmp0, ]
-  IN [tmp0, ]
-    %tmp7 = load i32* %tmp0
-  OUT [tmp7, ]
-  IN [tmp7, ]
-    ret i32 %tmp7
-  OUT []
-
+IN []
+  %tmp0 = alloca i32
+OUT [tmp0, ]
+IN [tmp0, ]
+  store i32 0, i32* %tmp0
+OUT [tmp0, ]
+IN [tmp0, ]
+  %tmp2 = call i8* @malloc(i32 44)
+OUT [tmp0, tmp2, ]
+IN [tmp0, tmp2, ]
+  %tmp1 = bitcast i8* %tmp2 to %class.LS*
+OUT [tmp0, tmp1, ]
+IN [tmp0, tmp1, ]
+  call void @"$__LS_LS"(%class.LS* %tmp1)
+OUT [tmp0, tmp1, ]
+IN [tmp0, tmp1, ]
+  %tmp3 = bitcast %class.LS* %tmp1 to %class.LS*
+OUT [tmp0, tmp3, ]
+IN [tmp0, tmp3, ]
+  %tmp4 = call i32 @__Start_LS(%class.LS* %tmp3, i32 10)
+OUT [tmp0, tmp4, ]
+IN [tmp0, tmp4, ]
   %tmp5 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-Func: __Start_LS
-entry0
-  IN []
-    %sz_tmp = alloca i32
-  OUT [sz_tmp, ]
-  IN [sz_tmp, ]
-    store i32 %sz, i32* %sz_tmp
-  OUT [sz_tmp, ]
-  IN [sz_tmp, ]
-    %aux01 = alloca i32
-  OUT [sz_tmp, aux01, ]
-  IN [sz_tmp, aux01, ]
-    %aux02 = alloca i32
-  OUT [sz_tmp, aux01, aux02, ]
-  IN [sz_tmp, aux01, aux02, ]
-    %tmp0 = bitcast %class.LS* %this to %class.LS*
-  OUT [sz_tmp, aux01, aux02, tmp0, ]
-  IN [sz_tmp, aux01, aux02, tmp0, ]
-    %tmp1 = load i32* %sz_tmp
-  OUT [aux01, aux02, tmp0, tmp1, ]
-  IN [aux01, aux02, tmp0, tmp1, ]
-    %tmp2 = call i32 @__Init_LS(%class.LS* %tmp0, i32 %tmp1)
-  OUT [aux01, aux02, tmp2, ]
-  IN [aux01, aux02, tmp2, ]
-    store i32 %tmp2, i32* %aux01
-  OUT [aux02, ]
-  IN [aux02, ]
-    %tmp3 = bitcast %class.LS* %this to %class.LS*
-  OUT [aux02, tmp3, ]
-  IN [aux02, tmp3, ]
-    %tmp4 = call i32 @__Print_LS(%class.LS* %tmp3)
-  OUT [tmp4, aux02, ]
-  IN [tmp4, aux02, ]
-    store i32 %tmp4, i32* %aux02
-  OUT []
-  IN []
-    %tmp5 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-  OUT []
-  IN []
-    %tmp6 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 9999)
-  OUT []
-  IN []
-    %tmp7 = bitcast %class.LS* %this to %class.LS*
-  OUT [tmp7, ]
-  IN [tmp7, ]
-    %tmp8 = call i32 @__Search_LS(%class.LS* %tmp7, i32 8)
-  OUT [tmp8, ]
-  IN [tmp8, ]
-    %tmp9 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-  OUT [tmp8, ]
-  IN [tmp8, ]
-    %tmp10 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp8)
-  OUT []
-  IN []
-    %tmp11 = bitcast %class.LS* %this to %class.LS*
-  OUT [tmp11, ]
-  IN [tmp11, ]
-    %tmp12 = call i32 @__Search_LS(%class.LS* %tmp11, i32 12)
-  OUT [tmp12, ]
-  IN [tmp12, ]
-    %tmp13 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-  OUT [tmp12, ]
-  IN [tmp12, ]
-    %tmp14 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp12)
-  OUT []
-  IN []
-    %tmp15 = bitcast %class.LS* %this to %class.LS*
-  OUT [tmp15, ]
-  IN [tmp15, ]
-    %tmp16 = call i32 @__Search_LS(%class.LS* %tmp15, i32 17)
-  OUT [tmp16, ]
-  IN [tmp16, ]
-    %tmp17 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-  OUT [tmp16, ]
-  IN [tmp16, ]
-    %tmp18 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp16)
-  OUT []
-  IN []
-    %tmp19 = bitcast %class.LS* %this to %class.LS*
-  OUT [tmp19, ]
-  IN [tmp19, ]
-    %tmp20 = call i32 @__Search_LS(%class.LS* %tmp19, i32 50)
-  OUT [tmp20, ]
-  IN [tmp20, ]
-    %tmp21 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-  OUT [tmp20, ]
-  IN [tmp20, ]
-    %tmp22 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp20)
-  OUT []
-  IN []
-    ret i32 55
-  OUT []
-
+OUT [tmp0, tmp4, ]
+IN [tmp0, tmp4, ]
+  %tmp6 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp4)
+OUT [tmp0, ]
+IN [tmp0, ]
+  %tmp7 = load i32* %tmp0
+OUT [tmp7, ]
+IN [tmp7, ]
+  ret i32 %tmp7
+OUT []
+IN []
+  %sz_tmp = alloca i32
+OUT [sz_tmp, ]
+IN [sz_tmp, ]
+  store i32 %sz, i32* %sz_tmp
+OUT [sz_tmp, ]
+IN [sz_tmp, ]
+  %aux01 = alloca i32
+OUT [sz_tmp, aux01, ]
+IN [sz_tmp, aux01, ]
+  %aux02 = alloca i32
+OUT [sz_tmp, aux01, aux02, ]
+IN [sz_tmp, aux01, aux02, ]
+  %tmp0 = bitcast %class.LS* %this to %class.LS*
+OUT [sz_tmp, aux01, aux02, tmp0, ]
+IN [sz_tmp, aux01, aux02, tmp0, ]
+  %tmp1 = load i32* %sz_tmp
+OUT [aux01, aux02, tmp0, tmp1, ]
+IN [aux01, aux02, tmp0, tmp1, ]
+  %tmp2 = call i32 @__Init_LS(%class.LS* %tmp0, i32 %tmp1)
+OUT [aux01, aux02, tmp2, ]
+IN [aux01, aux02, tmp2, ]
+  store i32 %tmp2, i32* %aux01
+OUT [aux02, ]
+IN [aux02, ]
+  %tmp3 = bitcast %class.LS* %this to %class.LS*
+OUT [aux02, tmp3, ]
+IN [aux02, tmp3, ]
+  %tmp4 = call i32 @__Print_LS(%class.LS* %tmp3)
+OUT [tmp4, aux02, ]
+IN [tmp4, aux02, ]
+  store i32 %tmp4, i32* %aux02
+OUT []
+IN []
   %tmp5 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
+OUT []
+IN []
+  %tmp6 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 9999)
+OUT []
+IN []
+  %tmp7 = bitcast %class.LS* %this to %class.LS*
+OUT [tmp7, ]
+IN [tmp7, ]
+  %tmp8 = call i32 @__Search_LS(%class.LS* %tmp7, i32 8)
+OUT [tmp8, ]
+IN [tmp8, ]
   %tmp9 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
+OUT [tmp8, ]
+IN [tmp8, ]
+  %tmp10 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp8)
+OUT []
+IN []
+  %tmp11 = bitcast %class.LS* %this to %class.LS*
+OUT [tmp11, ]
+IN [tmp11, ]
+  %tmp12 = call i32 @__Search_LS(%class.LS* %tmp11, i32 12)
+OUT [tmp12, ]
+IN [tmp12, ]
   %tmp13 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
+OUT [tmp12, ]
+IN [tmp12, ]
+  %tmp14 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp12)
+OUT []
+IN []
+  %tmp15 = bitcast %class.LS* %this to %class.LS*
+OUT [tmp15, ]
+IN [tmp15, ]
+  %tmp16 = call i32 @__Search_LS(%class.LS* %tmp15, i32 17)
+OUT [tmp16, ]
+IN [tmp16, ]
   %tmp17 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
+OUT [tmp16, ]
+IN [tmp16, ]
+  %tmp18 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp16)
+OUT []
+IN []
+  %tmp19 = bitcast %class.LS* %this to %class.LS*
+OUT [tmp19, ]
+IN [tmp19, ]
+  %tmp20 = call i32 @__Search_LS(%class.LS* %tmp19, i32 50)
+OUT [tmp20, ]
+IN [tmp20, ]
   %tmp21 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-Func: __Print_LS
-entry0
-  IN []
-    %j = alloca i32
-  OUT [j, ]
-  IN [j, ]
-    store i32 1, i32* %j
-  OUT [j, ]
-  IN [j, ]
-    br label %while3
-  OUT [j, ]
-while3
-  IN [j, ]
-    %tmp0 = load i32* %j
-  OUT [j, tmp0, ]
-  IN [j, tmp0, ]
-    %tmp1 = getelementptr %class.LS* %this, i32 0, i32 2
-  OUT [j, tmp0, tmp1, ]
-  IN [j, tmp0, tmp1, ]
-    %tmp2 = load i32* %tmp1
-  OUT [j, tmp0, tmp2, ]
-  IN [j, tmp0, tmp2, ]
-    %tmp3 = icmp slt i32 %tmp0, %tmp2
-  OUT [j, tmp3, ]
-  IN [j, tmp3, ]
-    br i1 %tmp3, label %do1, label %cont2
-  OUT [j, ]
-do1
-  IN [j, ]
-    %tmp4 = getelementptr %class.LS* %this, i32 0, i32 1
-  OUT [j, tmp4, ]
-  IN [j, tmp4, ]
-    %tmp5 = load { i32, i32* }** %tmp4
-  OUT [j, tmp5, ]
-  IN [j, tmp5, ]
-    %tmp6 = getelementptr { i32, i32* }* %tmp5, i32 0, i32 1
-  OUT [j, tmp6, ]
-  IN [j, tmp6, ]
-    %tmp7 = load i32** %tmp6
-  OUT [tmp7, j, ]
-  IN [tmp7, j, ]
-    %tmp9 = load i32* %j
-  OUT [tmp7, tmp9, j, ]
-  IN [tmp7, tmp9, j, ]
-    %tmp8 = getelementptr i32* %tmp7, i32 %tmp9
-  OUT [j, tmp8, ]
-  IN [j, tmp8, ]
-    %tmp10 = load i32* %tmp8
-  OUT [j, tmp10, ]
-  IN [j, tmp10, ]
-    %tmp11 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-  OUT [j, tmp10, ]
-  IN [j, tmp10, ]
-    %tmp12 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp10)
-  OUT [j, ]
-  IN [j, ]
-    %tmp13 = load i32* %j
-  OUT [j, tmp13, ]
-  IN [j, tmp13, ]
-    %tmp14 = add i32 %tmp13, 1
-  OUT [j, tmp14, ]
-  IN [j, tmp14, ]
-    store i32 %tmp14, i32* %j
-  OUT [j, ]
-  IN [j, ]
-    br label %while3
-  OUT [j, ]
-cont2
-  IN []
-    ret i32 0
-  OUT []
-
+OUT [tmp20, ]
+IN [tmp20, ]
+  %tmp22 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp20)
+OUT []
+IN []
+  ret i32 55
+OUT []
+IN []
+  %j = alloca i32
+OUT [j, ]
+IN [j, ]
+  store i32 1, i32* %j
+OUT [j, ]
+IN [j, ]
+  br label %while3
+OUT [j, ]
+ile3
+IN [j, ]
+  %tmp0 = load i32* %j
+OUT [j, tmp0, ]
+IN [j, tmp0, ]
+  %tmp1 = getelementptr %class.LS* %this, i32 0, i32 2
+OUT [j, tmp0, tmp1, ]
+IN [j, tmp0, tmp1, ]
+  %tmp2 = load i32* %tmp1
+OUT [j, tmp0, tmp2, ]
+IN [j, tmp0, tmp2, ]
+  %tmp3 = icmp slt i32 %tmp0, %tmp2
+OUT [j, tmp3, ]
+IN [j, tmp3, ]
+  br i1 %tmp3, label %do1, label %cont2
+OUT [j, ]
+1
+IN [j, ]
+  %tmp4 = getelementptr %class.LS* %this, i32 0, i32 1
+OUT [j, tmp4, ]
+IN [j, tmp4, ]
+  %tmp5 = load { i32, i32* }** %tmp4
+OUT [j, tmp5, ]
+IN [j, tmp5, ]
+  %tmp6 = getelementptr { i32, i32* }* %tmp5, i32 0, i32 1
+OUT [j, tmp6, ]
+IN [j, tmp6, ]
+  %tmp7 = load i32** %tmp6
+OUT [tmp7, j, ]
+IN [tmp7, j, ]
+  %tmp9 = load i32* %j
+OUT [tmp7, tmp9, j, ]
+IN [tmp7, tmp9, j, ]
+  %tmp8 = getelementptr i32* %tmp7, i32 %tmp9
+OUT [j, tmp8, ]
+IN [j, tmp8, ]
+  %tmp10 = load i32* %tmp8
+OUT [j, tmp10, ]
+IN [j, tmp10, ]
   %tmp11 = getelementptr [4 x i8]* @.formatting.string, i32 0, i32 0
-Func: __Search_LS
-entry0
-  IN []
-    %num_tmp = alloca i32
-  OUT [num_tmp, ]
-  IN [num_tmp, ]
-    store i32 %num, i32* %num_tmp
-  OUT [num_tmp, ]
-  IN [num_tmp, ]
-    %j = alloca i32
-  OUT [num_tmp, j, ]
-  IN [num_tmp, j, ]
-    %ls01 = alloca i1
-  OUT [num_tmp, j, ls01, ]
-  IN [num_tmp, j, ls01, ]
-    %ifound = alloca i32
-  OUT [num_tmp, j, ls01, ifound, ]
-  IN [num_tmp, j, ls01, ifound, ]
-    %aux01 = alloca i32
-  OUT [num_tmp, j, ls01, ifound, aux01, ]
-  IN [num_tmp, j, ls01, ifound, aux01, ]
-    %aux02 = alloca i32
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, ]
-    %nt = alloca i32
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    store i32 1, i32* %j
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    store i1 false, i1* %ls01
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    store i32 0, i32* %ifound
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    br label %while3
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-while3
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    %tmp0 = load i32* %j
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, ]
-    %tmp1 = getelementptr %class.LS* %this, i32 0, i32 2
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, tmp1, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, tmp1, ]
-    %tmp2 = load i32* %tmp1
-  OUT [tmp2, num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, ]
-  IN [tmp2, num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, ]
-    %tmp3 = icmp slt i32 %tmp0, %tmp2
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp3, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp3, ]
-    br i1 %tmp3, label %do1, label %cont2
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-do1
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    %tmp4 = getelementptr %class.LS* %this, i32 0, i32 1
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp4, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp4, ]
-    %tmp5 = load { i32, i32* }** %tmp4
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp5, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp5, ]
-    %tmp6 = getelementptr { i32, i32* }* %tmp5, i32 0, i32 1
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp6, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp6, ]
-    %tmp7 = load i32** %tmp6
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp7, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp7, ]
-    %tmp9 = load i32* %j
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp7, tmp9, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp7, tmp9, ]
-    %tmp8 = getelementptr i32* %tmp7, i32 %tmp9
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp8, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp8, ]
-    %tmp10 = load i32* %tmp8
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp10, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp10, ]
-    store i32 %tmp10, i32* %aux01
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    %tmp11 = load i32* %num_tmp
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp11, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp11, ]
-    %tmp12 = add i32 %tmp11, 1
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp12, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp12, ]
-    store i32 %tmp12, i32* %aux02
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    %tmp13 = load i32* %aux01
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp13, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp13, ]
-    %tmp14 = load i32* %num_tmp
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp13, tmp14, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp13, tmp14, ]
-    %tmp15 = icmp slt i32 %tmp13, %tmp14
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp15, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp15, ]
-    br i1 %tmp15, label %then4, label %else6
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-then4
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    store i32 0, i32* %nt
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    br label %cont5
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-else6
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    %tmp16 = load i32* %aux01
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp16, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp16, ]
-    %tmp17 = load i32* %aux02
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp16, tmp17, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp16, tmp17, ]
-    %tmp18 = icmp slt i32 %tmp16, %tmp17
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp18, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp18, ]
-    %tmp19 = sub i1 true, %tmp18
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp19, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp19, ]
-    br i1 %tmp19, label %then7, label %else9
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-then7
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    store i32 0, i32* %nt
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    br label %cont8
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-else9
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    store i1 true, i1* %ls01
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    store i32 1, i32* %ifound
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    %tmp20 = getelementptr %class.LS* %this, i32 0, i32 2
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp20, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp20, ]
-    %tmp21 = load i32* %tmp20
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp21, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp21, ]
-    store i32 %tmp21, i32* %j
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    br label %cont8
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-cont8
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    br label %cont5
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-cont5
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    %tmp22 = load i32* %j
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp22, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp22, ]
-    %tmp23 = add i32 %tmp22, 1
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp23, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp23, ]
-    store i32 %tmp23, i32* %j
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-  IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-    br label %while3
-  OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
-cont2
-  IN [ifound, ]
-    %tmp24 = load i32* %ifound
-  OUT [tmp24, ]
-  IN [tmp24, ]
-    ret i32 %tmp24
-  OUT []
+OUT [j, tmp10, ]
+IN [j, tmp10, ]
+  %tmp12 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([4 x i8]* @.formatting.string, i32 0, i32 0), i32 %tmp10)
+OUT [j, ]
+IN [j, ]
+  %tmp13 = load i32* %j
+OUT [j, tmp13, ]
+IN [j, tmp13, ]
+  %tmp14 = add i32 %tmp13, 1
+OUT [j, tmp14, ]
+IN [j, tmp14, ]
+  store i32 %tmp14, i32* %j
+OUT [j, ]
+IN [j, ]
+  br label %while3
+OUT [j, ]
+nt2
+IN []
+  ret i32 0
+OUT []
+IN []
+  %num_tmp = alloca i32
+OUT [num_tmp, ]
+IN [num_tmp, ]
+  store i32 %num, i32* %num_tmp
+OUT [num_tmp, ]
+IN [num_tmp, ]
+  %j = alloca i32
+OUT [num_tmp, j, ]
+IN [num_tmp, j, ]
+  %ls01 = alloca i1
+OUT [num_tmp, j, ls01, ]
+IN [num_tmp, j, ls01, ]
+  %ifound = alloca i32
+OUT [num_tmp, j, ls01, ifound, ]
+IN [num_tmp, j, ls01, ifound, ]
+  %aux01 = alloca i32
+OUT [num_tmp, j, ls01, ifound, aux01, ]
+IN [num_tmp, j, ls01, ifound, aux01, ]
+  %aux02 = alloca i32
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, ]
+  %nt = alloca i32
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  store i32 1, i32* %j
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  store i1 false, i1* %ls01
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  store i32 0, i32* %ifound
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  br label %while3
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+ile3
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  %tmp0 = load i32* %j
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, ]
+  %tmp1 = getelementptr %class.LS* %this, i32 0, i32 2
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, tmp1, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, tmp1, ]
+  %tmp2 = load i32* %tmp1
+OUT [tmp2, num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, ]
+IN [tmp2, num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp0, ]
+  %tmp3 = icmp slt i32 %tmp0, %tmp2
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp3, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp3, ]
+  br i1 %tmp3, label %do1, label %cont2
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+1
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  %tmp4 = getelementptr %class.LS* %this, i32 0, i32 1
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp4, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp4, ]
+  %tmp5 = load { i32, i32* }** %tmp4
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp5, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp5, ]
+  %tmp6 = getelementptr { i32, i32* }* %tmp5, i32 0, i32 1
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp6, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp6, ]
+  %tmp7 = load i32** %tmp6
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp7, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp7, ]
+  %tmp9 = load i32* %j
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp7, tmp9, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp7, tmp9, ]
+  %tmp8 = getelementptr i32* %tmp7, i32 %tmp9
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp8, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp8, ]
+  %tmp10 = load i32* %tmp8
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp10, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp10, ]
+  store i32 %tmp10, i32* %aux01
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  %tmp11 = load i32* %num_tmp
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp11, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp11, ]
+  %tmp12 = add i32 %tmp11, 1
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp12, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp12, ]
+  store i32 %tmp12, i32* %aux02
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  %tmp13 = load i32* %aux01
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp13, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp13, ]
+  %tmp14 = load i32* %num_tmp
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp13, tmp14, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp13, tmp14, ]
+  %tmp15 = icmp slt i32 %tmp13, %tmp14
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp15, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp15, ]
+  br i1 %tmp15, label %then4, label %else6
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+en4
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  store i32 0, i32* %nt
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  br label %cont5
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+se6
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  %tmp16 = load i32* %aux01
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp16, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp16, ]
+  %tmp17 = load i32* %aux02
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp16, tmp17, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp16, tmp17, ]
+  %tmp18 = icmp slt i32 %tmp16, %tmp17
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp18, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp18, ]
+  %tmp19 = sub i1 true, %tmp18
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp19, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp19, ]
+  br i1 %tmp19, label %then7, label %else9
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+en7
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  store i32 0, i32* %nt
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  br label %cont8
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+se9
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  store i1 true, i1* %ls01
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  store i32 1, i32* %ifound
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  %tmp20 = getelementptr %class.LS* %this, i32 0, i32 2
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp20, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp20, ]
+  %tmp21 = load i32* %tmp20
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp21, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp21, ]
+  store i32 %tmp21, i32* %j
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  br label %cont8
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+nt8
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  br label %cont5
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+nt5
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  %tmp22 = load i32* %j
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp22, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp22, ]
+  %tmp23 = add i32 %tmp22, 1
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp23, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, tmp23, ]
+  store i32 %tmp23, i32* %j
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+IN [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+  br label %while3
+OUT [num_tmp, j, ls01, ifound, aux01, aux02, nt, ]
+nt2
+IN [ifound, ]
+  %tmp24 = load i32* %ifound
+OUT [tmp24, ]
+IN [tmp24, ]
+  ret i32 %tmp24
+OUT []
+IN []
+  %sz_tmp = alloca i32
+OUT [sz_tmp, ]
+IN [sz_tmp, ]
+  store i32 %sz, i32* %sz_tmp
+OUT [sz_tmp, ]
+IN [sz_tmp, ]
+  %j = alloca i32
+OUT [sz_tmp, j, ]
+IN [sz_tmp, j, ]
+  %k = alloca i32
+OUT [sz_tmp, j, k, ]
+IN [sz_tmp, j, k, ]
+  %aux01 = alloca i32
+OUT [sz_tmp, j, k, aux01, ]
+IN [sz_tmp, j, k, aux01, ]
+  %aux02 = alloca i32
+OUT [sz_tmp, j, k, aux01, aux02, ]
+IN [sz_tmp, j, k, aux01, aux02, ]
+  %tmp0 = load i32* %sz_tmp
+OUT [sz_tmp, j, k, aux01, aux02, tmp0, ]
+IN [sz_tmp, j, k, aux01, aux02, tmp0, ]
+  %tmp1 = getelementptr %class.LS* %this, i32 0, i32 2
+OUT [sz_tmp, j, k, aux01, aux02, tmp0, tmp1, ]
+IN [sz_tmp, j, k, aux01, aux02, tmp0, tmp1, ]
+  store i32 %tmp0, i32* %tmp1
+OUT [sz_tmp, j, k, aux01, aux02, ]
+IN [sz_tmp, j, k, aux01, aux02, ]
+  %tmp2 = load i32* %sz_tmp
+OUT [j, k, aux01, aux02, tmp2, ]
+IN [j, k, aux01, aux02, tmp2, ]
+  %tmp4 = call i8* @malloc(i32 12)
+OUT [j, k, aux01, aux02, tmp2, tmp4, ]
+IN [j, k, aux01, aux02, tmp2, tmp4, ]
+  %tmp3 = bitcast i8* %tmp4 to { i32, i32* }*
+OUT [j, k, aux01, aux02, tmp2, tmp3, ]
+IN [j, k, aux01, aux02, tmp2, tmp3, ]
+  %tmp5 = getelementptr { i32, i32* }* %tmp3, i32 0, i32 0
+OUT [tmp5, j, k, aux01, aux02, tmp2, tmp3, ]
+IN [tmp5, j, k, aux01, aux02, tmp2, tmp3, ]
+  store i32 %tmp2, i32* %tmp5
+OUT [j, k, aux01, aux02, tmp2, tmp3, ]
+IN [j, k, aux01, aux02, tmp2, tmp3, ]
+  %tmp7 = mul i32 %tmp2, 4
+OUT [j, k, aux01, aux02, tmp3, tmp7, ]
+IN [j, k, aux01, aux02, tmp3, tmp7, ]
+  %tmp8 = call i8* @malloc(i32 %tmp7)
+OUT [j, k, aux01, aux02, tmp3, tmp8, ]
+IN [j, k, aux01, aux02, tmp3, tmp8, ]
+  %tmp6 = bitcast i8* %tmp8 to i32*
+OUT [j, k, aux01, aux02, tmp3, tmp6, ]
+IN [j, k, aux01, aux02, tmp3, tmp6, ]
+  %tmp9 = getelementptr { i32, i32* }* %tmp3, i32 0, i32 1
+OUT [j, k, aux01, aux02, tmp3, tmp6, tmp9, ]
+IN [j, k, aux01, aux02, tmp3, tmp6, tmp9, ]
+  store i32* %tmp6, i32** %tmp9
+OUT [j, k, aux01, aux02, tmp3, ]
+IN [j, k, aux01, aux02, tmp3, ]
+  %tmp10 = getelementptr %class.LS* %this, i32 0, i32 1
+OUT [j, k, aux01, aux02, tmp3, tmp10, ]
+IN [j, k, aux01, aux02, tmp3, tmp10, ]
+  store { i32, i32* }* %tmp3, { i32, i32* }** %tmp10
+OUT [j, k, aux01, aux02, ]
+IN [j, k, aux01, aux02, ]
+  store i32 1, i32* %j
+OUT [j, k, aux01, aux02, ]
+IN [j, k, aux01, aux02, ]
+  %tmp11 = getelementptr %class.LS* %this, i32 0, i32 2
+OUT [j, k, aux01, aux02, tmp11, ]
+IN [j, k, aux01, aux02, tmp11, ]
+  %tmp12 = load i32* %tmp11
+OUT [j, k, aux01, aux02, tmp12, ]
+IN [j, k, aux01, aux02, tmp12, ]
+  %tmp13 = add i32 %tmp12, 1
+OUT [j, k, aux01, aux02, tmp13, ]
+IN [j, k, aux01, aux02, tmp13, ]
+  store i32 %tmp13, i32* %k
+OUT [j, k, aux01, aux02, ]
+IN [j, k, aux01, aux02, ]
+  br label %while3
+OUT [j, k, aux01, aux02, ]
+ile3
+IN [j, k, aux01, aux02, ]
+  %tmp14 = load i32* %j
+OUT [j, k, aux01, aux02, tmp14, ]
+IN [j, k, aux01, aux02, tmp14, ]
+  %tmp15 = getelementptr %class.LS* %this, i32 0, i32 2
+OUT [j, k, aux01, aux02, tmp14, tmp15, ]
+IN [j, k, aux01, aux02, tmp14, tmp15, ]
+  %tmp16 = load i32* %tmp15
+OUT [j, k, aux01, aux02, tmp16, tmp14, ]
+IN [j, k, aux01, aux02, tmp16, tmp14, ]
+  %tmp17 = icmp slt i32 %tmp14, %tmp16
+OUT [j, k, aux01, aux02, tmp17, ]
+IN [j, k, aux01, aux02, tmp17, ]
+  br i1 %tmp17, label %do1, label %cont2
+OUT [j, k, aux01, aux02, ]
+1
+IN [j, k, aux01, aux02, ]
+  %tmp18 = load i32* %j
+OUT [j, k, aux01, aux02, tmp18, ]
+IN [j, k, aux01, aux02, tmp18, ]
+  %tmp19 = mul i32 2, %tmp18
+OUT [j, k, aux01, aux02, tmp19, ]
+IN [j, k, aux01, aux02, tmp19, ]
+  store i32 %tmp19, i32* %aux01
+OUT [j, k, aux01, aux02, ]
+IN [j, k, aux01, aux02, ]
+  %tmp20 = load i32* %k
+OUT [j, k, aux01, aux02, tmp20, ]
+IN [j, k, aux01, aux02, tmp20, ]
+  %tmp21 = sub i32 %tmp20, 3
+OUT [j, k, aux01, aux02, tmp21, ]
+IN [j, k, aux01, aux02, tmp21, ]
+  store i32 %tmp21, i32* %aux02
+OUT [j, k, aux01, aux02, ]
+IN [j, k, aux01, aux02, ]
+  %tmp22 = getelementptr %class.LS* %this, i32 0, i32 1
+OUT [j, k, aux01, aux02, tmp22, ]
+IN [j, k, aux01, aux02, tmp22, ]
+  %tmp23 = load { i32, i32* }** %tmp22
+OUT [j, k, aux01, aux02, tmp23, ]
+IN [j, k, aux01, aux02, tmp23, ]
+  %tmp24 = getelementptr { i32, i32* }* %tmp23, i32 0, i32 1
+OUT [j, k, aux01, aux02, tmp24, ]
+IN [j, k, aux01, aux02, tmp24, ]
+  %tmp25 = load i32** %tmp24
+OUT [j, k, aux01, aux02, tmp25, ]
+IN [j, k, aux01, aux02, tmp25, ]
+  %tmp27 = load i32* %j
+OUT [j, k, aux01, aux02, tmp25, tmp27, ]
+IN [j, k, aux01, aux02, tmp25, tmp27, ]
+  %tmp26 = getelementptr i32* %tmp25, i32 %tmp27
+OUT [j, k, aux01, aux02, tmp26, ]
+IN [j, k, aux01, aux02, tmp26, ]
+  %tmp28 = load i32* %aux01
+OUT [j, k, aux01, aux02, tmp26, tmp28, ]
+IN [j, k, aux01, aux02, tmp26, tmp28, ]
+  %tmp29 = load i32* %aux02
+OUT [j, k, aux01, aux02, tmp26, tmp28, tmp29, ]
+IN [j, k, aux01, aux02, tmp26, tmp28, tmp29, ]
+  %tmp30 = add i32 %tmp28, %tmp29
+OUT [j, k, aux01, aux02, tmp26, tmp30, ]
+IN [j, k, aux01, aux02, tmp26, tmp30, ]
+  store i32 %tmp30, i32* %tmp26
+OUT [j, k, aux01, aux02, ]
+IN [j, k, aux01, aux02, ]
+  %tmp31 = load i32* %j
+OUT [j, k, aux01, aux02, tmp31, ]
+IN [j, k, aux01, aux02, tmp31, ]
+  %tmp32 = add i32 %tmp31, 1
+OUT [j, k, aux01, aux02, tmp32, ]
+IN [j, k, aux01, aux02, tmp32, ]
+  store i32 %tmp32, i32* %j
+OUT [j, k, aux01, aux02, ]
+IN [j, k, aux01, aux02, ]
+  %tmp33 = load i32* %k
+OUT [j, k, aux01, aux02, tmp33, ]
+IN [j, k, aux01, aux02, tmp33, ]
+  %tmp34 = sub i32 %tmp33, 1
+OUT [j, k, aux01, aux02, tmp34, ]
+IN [j, k, aux01, aux02, tmp34, ]
+  store i32 %tmp34, i32* %k
+OUT [j, k, aux01, aux02, ]
+IN [j, k, aux01, aux02, ]
+  br label %while3
+OUT [j, k, aux01, aux02, ]
+IN []
+  ret i32 0
+OUT []
+IN []
+  ret void
+OUT []
+IN []
+  ret void
+OUT []
 
-Func: __Init_LS
-entry0
-  IN []
-    %sz_tmp = alloca i32
-  OUT [sz_tmp, ]
-  IN [sz_tmp, ]
-    store i32 %sz, i32* %sz_tmp
-  OUT [sz_tmp, ]
-  IN [sz_tmp, ]
-    %j = alloca i32
-  OUT [sz_tmp, j, ]
-  IN [sz_tmp, j, ]
-    %k = alloca i32
-  OUT [sz_tmp, j, k, ]
-  IN [sz_tmp, j, k, ]
-    %aux01 = alloca i32
-  OUT [sz_tmp, j, k, aux01, ]
-  IN [sz_tmp, j, k, aux01, ]
-    %aux02 = alloca i32
-  OUT [sz_tmp, j, k, aux01, aux02, ]
-  IN [sz_tmp, j, k, aux01, aux02, ]
-    %tmp0 = load i32* %sz_tmp
-  OUT [sz_tmp, j, k, aux01, aux02, tmp0, ]
-  IN [sz_tmp, j, k, aux01, aux02, tmp0, ]
-    %tmp1 = getelementptr %class.LS* %this, i32 0, i32 2
-  OUT [sz_tmp, j, k, aux01, aux02, tmp0, tmp1, ]
-  IN [sz_tmp, j, k, aux01, aux02, tmp0, tmp1, ]
-    store i32 %tmp0, i32* %tmp1
-  OUT [sz_tmp, j, k, aux01, aux02, ]
-  IN [sz_tmp, j, k, aux01, aux02, ]
-    %tmp2 = load i32* %sz_tmp
-  OUT [j, k, aux01, aux02, tmp2, ]
-  IN [j, k, aux01, aux02, tmp2, ]
-    %tmp4 = call i8* @malloc(i32 12)
-  OUT [j, k, aux01, aux02, tmp2, tmp4, ]
-  IN [j, k, aux01, aux02, tmp2, tmp4, ]
-    %tmp3 = bitcast i8* %tmp4 to { i32, i32* }*
-  OUT [j, k, aux01, aux02, tmp2, tmp3, ]
-  IN [j, k, aux01, aux02, tmp2, tmp3, ]
-    %tmp5 = getelementptr { i32, i32* }* %tmp3, i32 0, i32 0
-  OUT [tmp5, j, k, aux01, aux02, tmp2, tmp3, ]
-  IN [tmp5, j, k, aux01, aux02, tmp2, tmp3, ]
-    store i32 %tmp2, i32* %tmp5
-  OUT [j, k, aux01, aux02, tmp2, tmp3, ]
-  IN [j, k, aux01, aux02, tmp2, tmp3, ]
-    %tmp7 = mul i32 %tmp2, 4
-  OUT [j, k, aux01, aux02, tmp3, tmp7, ]
-  IN [j, k, aux01, aux02, tmp3, tmp7, ]
-    %tmp8 = call i8* @malloc(i32 %tmp7)
-  OUT [j, k, aux01, aux02, tmp3, tmp8, ]
-  IN [j, k, aux01, aux02, tmp3, tmp8, ]
-    %tmp6 = bitcast i8* %tmp8 to i32*
-  OUT [j, k, aux01, aux02, tmp3, tmp6, ]
-  IN [j, k, aux01, aux02, tmp3, tmp6, ]
-    %tmp9 = getelementptr { i32, i32* }* %tmp3, i32 0, i32 1
-  OUT [j, k, aux01, aux02, tmp3, tmp6, tmp9, ]
-  IN [j, k, aux01, aux02, tmp3, tmp6, tmp9, ]
-    store i32* %tmp6, i32** %tmp9
-  OUT [j, k, aux01, aux02, tmp3, ]
-  IN [j, k, aux01, aux02, tmp3, ]
-    %tmp10 = getelementptr %class.LS* %this, i32 0, i32 1
-  OUT [j, k, aux01, aux02, tmp3, tmp10, ]
-  IN [j, k, aux01, aux02, tmp3, tmp10, ]
-    store { i32, i32* }* %tmp3, { i32, i32* }** %tmp10
-  OUT [j, k, aux01, aux02, ]
-  IN [j, k, aux01, aux02, ]
-    store i32 1, i32* %j
-  OUT [j, k, aux01, aux02, ]
-  IN [j, k, aux01, aux02, ]
-    %tmp11 = getelementptr %class.LS* %this, i32 0, i32 2
-  OUT [j, k, aux01, aux02, tmp11, ]
-  IN [j, k, aux01, aux02, tmp11, ]
-    %tmp12 = load i32* %tmp11
-  OUT [j, k, aux01, aux02, tmp12, ]
-  IN [j, k, aux01, aux02, tmp12, ]
-    %tmp13 = add i32 %tmp12, 1
-  OUT [j, k, aux01, aux02, tmp13, ]
-  IN [j, k, aux01, aux02, tmp13, ]
-    store i32 %tmp13, i32* %k
-  OUT [j, k, aux01, aux02, ]
-  IN [j, k, aux01, aux02, ]
-    br label %while3
-  OUT [j, k, aux01, aux02, ]
-while3
-  IN [j, k, aux01, aux02, ]
-    %tmp14 = load i32* %j
-  OUT [j, k, aux01, aux02, tmp14, ]
-  IN [j, k, aux01, aux02, tmp14, ]
-    %tmp15 = getelementptr %class.LS* %this, i32 0, i32 2
-  OUT [j, k, aux01, aux02, tmp14, tmp15, ]
-  IN [j, k, aux01, aux02, tmp14, tmp15, ]
-    %tmp16 = load i32* %tmp15
-  OUT [j, k, aux01, aux02, tmp16, tmp14, ]
-  IN [j, k, aux01, aux02, tmp16, tmp14, ]
-    %tmp17 = icmp slt i32 %tmp14, %tmp16
-  OUT [j, k, aux01, aux02, tmp17, ]
-  IN [j, k, aux01, aux02, tmp17, ]
-    br i1 %tmp17, label %do1, label %cont2
-  OUT [j, k, aux01, aux02, ]
-do1
-  IN [j, k, aux01, aux02, ]
-    %tmp18 = load i32* %j
-  OUT [j, k, aux01, aux02, tmp18, ]
-  IN [j, k, aux01, aux02, tmp18, ]
-    %tmp19 = mul i32 2, %tmp18
-  OUT [j, k, aux01, aux02, tmp19, ]
-  IN [j, k, aux01, aux02, tmp19, ]
-    store i32 %tmp19, i32* %aux01
-  OUT [j, k, aux01, aux02, ]
-  IN [j, k, aux01, aux02, ]
-    %tmp20 = load i32* %k
-  OUT [j, k, aux01, aux02, tmp20, ]
-  IN [j, k, aux01, aux02, tmp20, ]
-    %tmp21 = sub i32 %tmp20, 3
-  OUT [j, k, aux01, aux02, tmp21, ]
-  IN [j, k, aux01, aux02, tmp21, ]
-    store i32 %tmp21, i32* %aux02
-  OUT [j, k, aux01, aux02, ]
-  IN [j, k, aux01, aux02, ]
-    %tmp22 = getelementptr %class.LS* %this, i32 0, i32 1
-  OUT [j, k, aux01, aux02, tmp22, ]
-  IN [j, k, aux01, aux02, tmp22, ]
-    %tmp23 = load { i32, i32* }** %tmp22
-  OUT [j, k, aux01, aux02, tmp23, ]
-  IN [j, k, aux01, aux02, tmp23, ]
-    %tmp24 = getelementptr { i32, i32* }* %tmp23, i32 0, i32 1
-  OUT [j, k, aux01, aux02, tmp24, ]
-  IN [j, k, aux01, aux02, tmp24, ]
-    %tmp25 = load i32** %tmp24
-  OUT [j, k, aux01, aux02, tmp25, ]
-  IN [j, k, aux01, aux02, tmp25, ]
-    %tmp27 = load i32* %j
-  OUT [j, k, aux01, aux02, tmp25, tmp27, ]
-  IN [j, k, aux01, aux02, tmp25, tmp27, ]
-    %tmp26 = getelementptr i32* %tmp25, i32 %tmp27
-  OUT [j, k, aux01, aux02, tmp26, ]
-  IN [j, k, aux01, aux02, tmp26, ]
-    %tmp28 = load i32* %aux01
-  OUT [j, k, aux01, aux02, tmp26, tmp28, ]
-  IN [j, k, aux01, aux02, tmp26, tmp28, ]
-    %tmp29 = load i32* %aux02
-  OUT [j, k, aux01, aux02, tmp26, tmp28, tmp29, ]
-  IN [j, k, aux01, aux02, tmp26, tmp28, tmp29, ]
-    %tmp30 = add i32 %tmp28, %tmp29
-  OUT [j, k, aux01, aux02, tmp26, tmp30, ]
-  IN [j, k, aux01, aux02, tmp26, tmp30, ]
-    store i32 %tmp30, i32* %tmp26
-  OUT [j, k, aux01, aux02, ]
-  IN [j, k, aux01, aux02, ]
-    %tmp31 = load i32* %j
-  OUT [j, k, aux01, aux02, tmp31, ]
-  IN [j, k, aux01, aux02, tmp31, ]
-    %tmp32 = add i32 %tmp31, 1
-  OUT [j, k, aux01, aux02, tmp32, ]
-  IN [j, k, aux01, aux02, tmp32, ]
-    store i32 %tmp32, i32* %j
-  OUT [j, k, aux01, aux02, ]
-  IN [j, k, aux01, aux02, ]
-    %tmp33 = load i32* %k
-  OUT [j, k, aux01, aux02, tmp33, ]
-  IN [j, k, aux01, aux02, tmp33, ]
-    %tmp34 = sub i32 %tmp33, 1
-  OUT [j, k, aux01, aux02, tmp34, ]
-  IN [j, k, aux01, aux02, tmp34, ]
-    store i32 %tmp34, i32* %k
-  OUT [j, k, aux01, aux02, ]
-  IN [j, k, aux01, aux02, ]
-    br label %while3
-  OUT [j, k, aux01, aux02, ]
-cont2
-  IN []
-    ret i32 0
-  OUT []
-
-Func: $__LinearSearch_LinearSearch
-entry0
-  IN []
-    ret void
-  OUT []
-
-Func: $__LS_LS
-entry0
-  IN []
-    ret void
-  OUT []
-
-BC¿ﬁ!  j  Ç        Å#ëA»I29íÑ%ãbÄEBíBƒ28I
-2D$H
-ê!#ƒRÄ!r$»àb®†®@∆   â      2"à	 dÖ#§Ñ#„Ñ°êLååÑƒLà¡í s`PÇÅí¿†¡B…!¬Hí_≤h8îÅñ2Ã@MÜûÄìÑê$øDàXàÑ$!öà*BƒêUÖ¡ ¨∆@⁄@¿¿A@
-!‰   :DH #$@ z…!N         q         `à         C         ‚8         ¿ß         Ü8         0ƒ…Ä        Ä!Œ        dÅ       2òLêå	&G∆C
-t(ë    y  2   3Äƒ·f=àC8Ñ√åBÄyxsòqÊ ÌÙÄ3B¬¡Œ°f0=àC8ÑÉÃ=»C=å=Ãxåtp{yHáppzpvxáp áÃÏê·0n0„P3ƒﬁ!ÿ!¬af0â;ºÉ;–C9¥<ºÉ<Ñ;Ãv`{h7hárh7Äápêáp`v(v¯vxáwÄá_áqáròáyòÅ,ÓÓ‡ı¿Ï q      Vê¸øÿ ”_≤F∞¸?K ëp¸%k∆!ÕTîG˙~ôiw9,üñ√Ú1˙ÀLªÀa˘¥ñè—@0 “XÇ¡ À‚6†¸!ÕÙó¨	(ˇœN@4˝%k í_8L“æ4EHc‘B˙~ô”/s
-  a       A,      4å î@aC0,√3»¿ ÉÅ #  ƒÃé ¿0;bP Ä# 4F@»       ALÃCÄA4SÑ—ALÃc€11œmƒƒ<µQÛ‡VALÃ£õ11œ    a   M   A,      4î¿@yrDaîHëïC08É3»– É¡ 3»– 3»– Á0K1( ¿Ç¡à" Äãò1  @#å  F
- ∞íÁ(fG
- ‡hƒ† Äå	Óbvƒ† Ä/êF
- ‡û‡4fG
- ÉÄ1( ‡ìÇÎò1( †kƒ†  1®Çº¬Å #   ñALÃCõ11Omƒƒ<∂qÛ‹÷ALÃÉõ11ènƒƒ<ªÅÛ∆ Hô] u—µa u—∂•Ûÿ¥©Ûÿ∂-”ÅH`Õa¥ÖÛ‘¥âÛ‘µçÛ‘∂ëÛ‘∏ïÛ‘πôÛ‘∫ùÛ‘º°Û‘ΩYRˆOÃ       a   7   D,      4å î@ê1î! 30  3»– É ≥`à·0
-¿p√†¡,É0CJÇP ÜÇE° PÜÑÄ0bP  ’‘Ä
-"åx ò%r
-   ALÃCÄA4SÑ—&ALÃS€11èmƒƒ<˜Ç”Lˆ	ÉS[11nƒƒ<πAâaÛÏ`X≤∑]ÛË¶ALÃ√[11Oo≈ƒ<5m≈ƒ<µm≈ƒ<ım≈ƒ<5nƒt        a   y   J,      4î¿@êW#  3»– É¡ 3»– 3a04¿L24¿L24¿L24¿L24¿`Ñ¡ ¿`DÅ ¿`± ¿,A@bxòÖ0‹0h0À $¡ÉÙ@Ä!Ü í( ‰Ä!!† F8 ê*¿`0‚	 Ä @n4òeà`0"⁄ `ñ °	–ÜÑ äbñ°0Ç¡àÍÄYÇc0"Î `0 bÉœ£ Fp Ã≥q†Ç1Ä¡/ ÄYÇÄ8êA8?   FA,][11mƒƒ<µmÛÿ∆ALÃs[ÖÅ’óPN3ŸˆALÃ£[11n ƒƒ<ªâÛBLÃ”õ11O~Ö‡4o@]tm@]¥}±HDÖ‡4Sn-≈ƒ<6m.≈ƒ<vm/≈ƒ<∂m0≈ƒ<ˆmƒt í≈Ûÿ∏I≈¸ÛÄA4SÑ—Ü!4”	ÉSﬂ@1DÉ_A1D≥€Dê\Äa»B‹∆04c#≈ƒ<5m$≈ƒ<um%≈ƒ<µm&≈ƒ<ım'≈ƒ<5n(≈ƒ<un)≈ƒ<µn*≈ƒ<ın+≈ƒ<5o,≈ƒ<u±HÑ     a      D,      4î¿@F!î 3»– É 3»– 3»– 3»– 3»– TÄ!gQ# Ë # HÀ 1œ3 PD## X¡»15 0ƒpQ’`Dp ¿`ƒc¿VQÄ
-0åà ò%HC\ÜQ ÜÜ fÑ! »`Ñ  ]†Ç-#Æ  Ü∆ ¬Ä0ƒà¡P »CB@ î¿`  ç®``0¢  2 ¥AFòA  ≥A∂A8  B   ÜALÃC[11Omƒƒ<∂qÛ‹∂ALÃÉ[11On ƒƒ<∫yÛÏˆALÃ√[11OÖ‡4ìmÇîôEP]€EPmK11èM[K11è]õK11èm€K11è}L11èç€1àd1≈ƒ<vn2≈ƒ<ˆn4≈ƒ<6o3≈ƒ<∂n5≈ƒ<v —LFü¿08µÈÛ‹∏QâU ÷Å,ƒm9≈ƒ<˜m"≈ƒ<5m#≈ƒ<um$≈ƒ<µm%≈ƒ<ım&≈ƒ<5n'≈ƒ<un(≈ƒ<µn)≈ƒ<ın*≈ƒ<5o+≈ƒ<uo8≈ƒ<∑mÜî˝ÛòM11œM€M11œ]       a      Ü     `Õa¥-”ÅH        a      Ü     `Õa¥-”ÅH            

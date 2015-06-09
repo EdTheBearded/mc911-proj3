@@ -25,21 +25,12 @@ using namespace llvm;
 
 namespace llvm {
 
-/*struct LivenessInfo {
-    std::set<const Value *> use;
-    std::set<const Value *> def;
-    std::set<const Value *> in;
-    std::set<const Value *> out;
-};*/
-
 class DCE: public FunctionPass {
 private:
 	
-    std::map<const Instruction*, LivenessInfo> iLivenessMap;
-    std::map<const BasicBlock*, LivenessInfo> bbLivenessMap;
+    DenseMap<const Instruction*, LivenessInfo> iLivenessMap;
+    DenseMap<const BasicBlock*, LivenessInfo> bbLivenessMap;
     DenseMap<const Instruction*, int> instMap;
-	void checkbb(Function &F);
-	void checki(Function &F);
 
 
 public:

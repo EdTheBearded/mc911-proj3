@@ -32,11 +32,9 @@ struct LivenessInfo {
 class Liveness: public FunctionPass {
 private:
 	
-    std::map<const Instruction*, LivenessInfo> iLivenessMap;
-    std::map<const BasicBlock*, LivenessInfo> bbLivenessMap;
+    DenseMap<const Instruction*, LivenessInfo> iLivenessMap;
+    DenseMap<const BasicBlock*, LivenessInfo> bbLivenessMap;
     DenseMap<const Instruction*, int> instMap;
-	void checkbb(Function &F);
-	void checki(Function &F);
 
 
 public:

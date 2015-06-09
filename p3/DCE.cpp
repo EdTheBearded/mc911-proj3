@@ -7,36 +7,41 @@
 
 using namespace std;
 
-/*void print_elem(const Value* i) {
+void print_elem(const Value* i) {
   errs() << i->getName() << " ";
-}*/
+}
 
 bool DCE::runOnFunction(Function &F) {
 
 	int r = 0;
+	bool cont = false;
 
-	Liveness &L = getAnalysis<Liveness>();
-	
-	inst_iterator i, e;
-	i = inst_begin(F);
-	e = inst_end(F);
+	do{
+		cont = false;
+		Liveness &L = getAnalysis<Liveness>();
+		
+		inst_iterator i, e;
+		i = inst_begin(F);
+		e = inst_end(F);
 
-	errs() << "function " << F.getName() << "\n";
-	for(; i != e; i++){
-		if(!(L.isLiveOut((&*i), (&*i))) && !(i->mayHaveSideEffects()) &&
-			!(isa<TerminatorInst>(&*i)) && !(isa<DbgInfoIntrinsic>(&*i)) &&
-			!(isa<LandingPadInst>(&*i))){
-			errs() << "removed: " << *i << "\n";
-			r++;
-		}	
-	}
-	errs() << r << " instructions removed\n";
-
+		for(; i != e; i++){
+			if(!(L.isLiveOut((&*i), (&*i))) && !(i->mayHaveSideEffects()) &&
+				!(isa<TerminatorInst>(&*i)) && !(isa<DbgInfoIntrinsic>(&*i)) &&
+				!(isa<LandingPadInst>(&*i))){
+				i->dropAllReferences();
+				i->eraseFromParent();
+				r++;
+				cont = true;
+				break;
+			}
+		}
+	} while (cont);
+errs() << "proof " << r << "\n";
 	#ifdef DEBUG
 	//checki(F);
 	//checkbb(F);
 	#endif
-	return false;
+	return true;
 }
 
 char DCE::ID = 0;
