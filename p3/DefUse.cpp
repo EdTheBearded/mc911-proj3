@@ -8,7 +8,7 @@
 #include "llvm/IR/IntrinsicInst.h"
 #include "llvm/Support/raw_ostream.h"
 
-#define DEBUG
+//#define DEBUG
 
 using namespace llvm;
 using namespace std;
