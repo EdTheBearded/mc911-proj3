@@ -11,10 +11,13 @@
 #include "llvm/IR/User.h"
 #include "llvm/IR/Instructions.h"
 #include <set>
+#include <list>
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Analysis/CFG.h"
 #include "llvm/ADT/BitVector.h"
 #include "llvm/IR/ValueMap.h"
+
+#define DEBUG
 
 using namespace llvm;
 
@@ -29,11 +32,12 @@ struct LivenessInfo {
 
 class Liveness: public FunctionPass {
 private:
-
-    DenseMap<const Instruction*, LivenessInfo> iLivenessMap;
-    DenseMap<const BasicBlock*, LivenessInfo> bbLivenessMap;
-
+	
+    std::map<const Instruction*, LivenessInfo> iLivenessMap;
+    std::map<const BasicBlock*, LivenessInfo> bbLivenessMap;
     DenseMap<const Instruction*, int> instMap;
+	void checkbb(Function &F);
+	void checki(Function &F);
 
 
 public:
