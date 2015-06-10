@@ -28,7 +28,6 @@ bool DCE::runOnFunction(Function &F) {
 			if(!(L.isLiveOut((&*i), (&*i))) && !(i->mayHaveSideEffects()) &&
 				!(isa<TerminatorInst>(&*i)) && !(isa<DbgInfoIntrinsic>(&*i)) &&
 				!(isa<LandingPadInst>(&*i))){
-				i->dropAllReferences();
 				i->eraseFromParent();
 				r++;
 				cont = true;
@@ -36,7 +35,7 @@ bool DCE::runOnFunction(Function &F) {
 			}
 		}
 	} while (cont);
-errs() << "proof " << r << "\n";
+	errs() << "proof " << r << "\n";
 	#ifdef DEBUG
 	//checki(F);
 	//checkbb(F);

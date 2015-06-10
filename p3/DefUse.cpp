@@ -22,11 +22,14 @@ namespace {
 
 	bool ret = false;
 	set<Instruction*> W;
+	#ifdef DEBUG
+	int count = 0;
+	#endif
 
 	// itera nas instruções da função
 	for (inst_iterator I = inst_begin(F), E = inst_end(F); I != E; ++I){
 		// checa se a instrucao e uma atribuicao (definicao)
-		if(!(I->getName().empty())){
+		if((!(I->getName().empty())) || isa<LoadInst>(*I)){
 			// armazena a instrucao no conjunto W
 			W.insert(&*I);
 			#ifdef DEBUG
@@ -49,7 +52,7 @@ namespace {
 
 		// checa se a intrucao esta viva
 		if((*inst)->hasNUses(0) && !((*inst)->mayHaveSideEffects()) && !((*inst)->isTerminator()) 
-			&& !(isa<DbgInfoIntrinsic>(**inst)) && !(isa<LandingPadInst>(**inst))){
+			&& !(isa<DbgInfoIntrinsic>(**inst)) && !(isa<LandingPadInst>(**inst)) && !(isa<StoreInst>(**inst))){
 			#ifdef DEBUG
 				errs() << "Definicao " << (*inst)->getName() << " e usada " << (*inst)->getNumUses() << " vez(es).\n";
 			#endif
@@ -69,11 +72,18 @@ namespace {
 				(*inst)->eraseFromParent();
 				// seta o retorno para true (codigo foi alterado)
 				ret = true;
+				#ifdef DEBUG
+				count++;
+				#endif
 		}
 		// apaga instrucao do conjunto
 		W.erase(inst);	
 	}
-		
+
+	#ifdef DEBUG
+	errs() << "proof " << count << "\n";		
+	#endif
+
       	return ret;
     }
   };
